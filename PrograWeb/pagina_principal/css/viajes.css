@@ -1,0 +1,118 @@
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #000e17;
+    color: white;
+    padding: 20px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+.busqueda{
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    margin-top: 30px;
+}
+
+
+.busqueda input{
+    padding: 8px; 
+    border-radius: 5px; 
+    border: 1px solid #ccc; 
+}
+
+
+.busqueda button {
+    padding: 8px 15px; 
+    border-radius: 5px; 
+    border: none; 
+    background-color: #0096d2; 
+    color: white; 
+    cursor: pointer; 
+}
+
+.busqueda button img {
+    width: 13px; 
+    height: 13px; 
+    margin-right: 5px;
+    margin-top: 2px;
+}
+
+.contenedor {
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: flex-start; 
+    padding: 20px;
+    margin-bottom: 60px; 
+    
+}
+
+
+.item {
+    text-align: center; 
+    margin: 10px; 
+    flex: 1 1 calc(25% - 20px); 
+}
+
+
+.item img {
+    width: 200px; 
+    height: 200px; 
+    object-fit: cover; 
+}
+
+.logo img {
+    width: 88px; 
+    height: auto; 
+    margin-right: 20px;
+}
+
+.referencias ul,
+.login ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.referencias ul li,
+.login ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.referencias ul li:last-child,
+.login ul li:last-child {
+    margin-right: 0;
+}
+
+.referencias ul li a,
+.login ul li a {
+    text-decoration: none;
+    color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+
+.referencias ul li a:hover,
+.login ul li a:hover {
+    background-color: #ffffff;
+    color: #000e17;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+footer {
+    background-color: #000e17;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

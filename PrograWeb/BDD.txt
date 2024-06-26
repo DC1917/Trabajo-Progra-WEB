@@ -1,0 +1,30 @@
+CREATE TABLE Roles(
+rolId INT AUTO_INCREMENT PRIMARY KEY,
+NombreRol VARCHAR(255) NOT NULL
+);
+
+CREATE table Usuarios(
+userId INT AUTO_INCREMENT PRIMARY KEY,
+NombreCompleto VARCHAR(255) NOT NULL,
+Correo VARCHAR(255) NOT NULL,
+NombreUsuario VARCHAR(255) NOT NULL,
+ClaveWeb VARCHAR(255) NOT NULL,
+rolId int,
+foreign key (rolId) references Roles (rolId)
+);
+
+CREATE TABLE IF NOT EXISTS ventas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    Rut BIGINT NOT NULL,
+    Nombre VARCHAR(255) NOT NULL,
+    Apellido VARCHAR(255) NOT NULL,
+    FechaIda DATE NOT NULL,
+    Genero ENUM('masculino', 'femenino') NOT NULL,
+    Plan ENUM('basico', 'platino', 'plus') NOT NULL,
+    MetodoPago ENUM('credito', 'transferencia', 'debito') NOT NULL
+);
+
+CREATE TABLE imagenes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    imageUrl VARCHAR(255) NOT NULL
+);

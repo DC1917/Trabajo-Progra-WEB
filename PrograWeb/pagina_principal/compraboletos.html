@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compra de boletos +Turbus</title>
+    <link rel="stylesheet" href="css/comprastyle.css">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="images/logo.jpeg" alt="Logo de la empresa">
+        </div>
+        <div class="referencias">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="nosotros.html">Acerca de nosotros</a></li>
+                    <li><a href="viajespopulares.html">Destinos destacados</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <h2>Compra de boleto</h2>
+
+    <div id="detalleBoleto"></div>
+
+    <!-- Formulario con acción hacia /guardar_boleto -->
+    <form id="formulario-boleto" action="/guardar_boleto" method="post">
+        <div>
+            <label for="rut">Rut:</label>
+            <input type="number" id="rut" placeholder="Ingresa tu rut sin guion" name="rut" required>
+        </div>
+
+        <div>
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+        </div>
+
+        <div>
+            <label for="apellido">Apellido:</label>
+            <input type="text" id="apellido" name="apellido" required>
+        </div>
+
+        <div>
+            <label for="fecha">Fecha de ida:</label>
+            <input type="date" id="fecha" name="fecha" required>
+        </div>
+
+        <div>
+            <label for="genero">Género:</label>
+            <select id="genero" name="genero" required>
+                <option value="" disabled selected>Selecciona tu género</option>
+                <option value="masculino">Masculino</option>
+                <option value="femenino">Femenino</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="plan">Plan:</label>
+            <select id="plan" name="plan" required>
+                <option value="" disabled selected>Selecciona un plan</option>
+                <option value="basico">Básico</option>
+                <option value="platino">Platino</option>
+                <option value="plus">Plus</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="metodo_pago">Método de pago:</label>
+            <select id="metodo_pago" name="metodo_pago" required>
+                <option value="" disabled selected>Selecciona un método de pago</option>
+                <option value="credito">Crédito</option>
+                <option value="transferencia">Transferencia</option>
+                <option value="debito">Débito</option>
+            </select>
+        </div>
+
+        <input type="submit" value="Enviar">
+    </form>
+
+    <footer>
+        <p>Derechos reservados &copy; 2024 +Turbus</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="java/fechaval.js"></script>
+    <script src="java/compra.js"></script>
+    <script>
+        document.getElementById('formulario-boleto').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita que el formulario se envíe de manera estándar
+            const form = event.target;
+
+            fetch('/guardar_boleto', {
+                method: 'POST',
+                body: new FormData(form)
+            }).then(response => {
+                if (response.ok) {
+                    window.location.href = 'agradecimiento.html';
+                } else {
+                    response.json().then(data => {
+                        console.error('Errores de validación:', data.errors);
+                        alert('Error al enviar los datos del boleto');
+                    }).catch(error => {
+                        console.error('Error al procesar la respuesta del servidor:', error);
+                        alert('Error al enviar los datos del boleto');
+                    });
+                }
+            }).catch(error => {
+                console.error('Error al enviar los datos del boleto:', error);
+                alert('Error al enviar los datos del boleto', error);
+            });
+        });
+    </script>
+</body>
+</html>

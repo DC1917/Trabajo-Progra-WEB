@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>+Turbus - Subir Imagen</title>
+    <link rel="stylesheet" href="css/inisiosesion.css">
+    <link rel="icon" type="image" href="images/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="images/logo.jpeg" alt="Logo de +Turbus">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="nosotros.html">Acerca de nosotros</a></li>
+                    <li><a href="viajespopulares.html">Destinos destacados</a></li>
+                    <li><a>Bienvenido</a></li>
+                    <li><a href="index.html">Cerrar Sesión</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Bienvenido a +Turbus</h1>
+                <p>Descubre nuevos destinos y vive experiencias únicas con nosotros.</p>
+            </div>
+        </section>
+
+        <section class="about">
+            <div class="container">
+                <h2>Acerca de Nosotros</h2>
+                <p>+Turbus es una empresa líder en el sector de viajes y turismo. Nos especializamos en ofrecer experiencias únicas y emocionantes a nuestros clientes en todo el mundo.</p>
+            </div>
+        </section>
+
+        <section class="destinations">
+            <div class="container">
+                <h2>Destinos destacados</h2>
+                <div class="destination">
+                    <h3>Buenos Aires, Argentina</h3>
+                    <p>Descubre la elegancia y la pasión de Buenos Aires. Con una amplia variedad de hoteles de lujo y una vibrante vida nocturna, esta ciudad te cautivará.</p>
+                </div>
+                <div class="destination">
+                    <h3>Chicago, Estados Unidos</h3>
+                    <p>Explora la majestuosidad arquitectónica de Chicago. Conocida como la Ciudad de los Vientos, ofrece impresionantes rascacielos y una escena cultural vibrante.</p>
+                </div>
+                <div class="destination">
+                    <h3>Wellington, Nueva Zelanda</h3>
+                    <p>Maravíllate con la belleza natural de Wellington. Con espectaculares paisajes montañosos y playas vírgenes, este destino es un paraíso para los amantes de la naturaleza.</p>
+                </div>
+                <div class="destination">
+                    <h3>Rapa Nui, Chile</h3>
+                    <p>Embárcate en una aventura única en Rapa Nui. Con sus misteriosas estatuas Moai y sus playas de aguas cristalinas, te sumergirás en una experiencia inolvidable.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h2>Subir Imagen</h2>
+                <form enctype="multipart/form-data">
+                    <input type="file" id="profileImage" name="profileImage">
+                    <button type="button" onclick="subirImagen()">Subir Imagen</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Derechos reservados &copy; 2024 +Turbus</p>
+        </div>
+    </footer>
+
+    <script>
+        async function subirImagen() {
+            const formData = new FormData();
+            formData.append('profileImage', document.getElementById('profileImage').files[0]);
+
+            try {
+                const response = await fetch('/subir_imagen', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const message = await response.text();
+                alert(message); // Muestra una alerta con el mensaje del servidor
+            } catch (error) {
+                console.error('Error al subir la imagen:', error);
+                alert('Error al subir la imagen.');
+            }
+        }
+    </script>
+</body>
+</html>
